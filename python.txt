@@ -1,0 +1,21 @@
+1、BFS广度优先搜索 【儿子往后排】
+与队列绑定，注意边界
+
+python里队列实现
+from queue import Queue
+put()  get()实现入栈、出栈
+
+采用list
+pop() 出栈  insert(0, val) 入栈
+append(val) 入栈  list[0] del list[0]出栈
+
+2、DFS   【儿子插队】
+与栈\递归绑定
+
+递归：【儿子排队，儿子生儿子，生完继续排，继续生】
+
+python实现栈
+list
+出栈pop() 入栈append() 
+
+3、递归  【儿子插队】

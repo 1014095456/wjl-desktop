@@ -1,0 +1,82 @@
+1、初始化git init
+2、设置签名
+项目仓库级别(优先级高于系统用户)
+git config user.name ***
+git config user.email ***
+设置系统用户级别
+git config --global user.name ***
+git config --global uesr.email ***
+3、查看工作区、暂存区状态
+git status
+4、添加到暂存区
+git add
+5、暂存区提交到本地库
+git commit -m 'update'
+6、查看版本
+git log
+git log --pretty=oneline  每个日志只显示一行，哈希值索引值
+git log --oneline
+git reflog  显示退回步数
+7、切换版本（索引值通过git log查看）
+A、基于索引值(推荐)：
+git reset --hard 索引值
+B、异或符^：
+只能回退,从HEAD往后退，^个数表示退几步
+git reset --hard HEAD^
+git reset --hard HEAD^^^  等价于 git reset --hard HEAD~3
+C、reset 三个参数 hard用的最多
+--soft     仅仅移动本地库指针
+--mixed  移动本地库指针，同时移动重置暂存区
+--hard    移动本地库指针，同时移动重置暂存区、工作区
+8、查看文档
+git help 命令
+git help reset
+9、比较工作区与暂存区文件
+git diff【文件名】
+工作区与历史版本比较
+git diff 【本地库历史版本】【文件名】
+10、分支
+创建分支 git branch 分支名
+查看分支 git branch -v
+切换分支 git checkout 分支名
+合并分支 git merge 分支名
+合并分支失败时，发生冲突，需要手动合并，处于正在合并状态：
+打开冲突的文件，修改完后保存，git add 文件名
+git commit -m "日志"   完成合并，不能带文件名
+11、加密算法 ：哈希SHA-1
+12、取别名
+git remote -v
+添加别名：git remote add 别名  地址名
+13、远程库与本地库交互
+A、创建本地库
+B、创建远程库【HTTPS地址\SSH地址】
+C、将本地库推送远程库
+git push 地址名 分支名
+D、克隆远程库到本地库，创建新文件夹直接克隆，会自动替换origin别名
+git clone HTTPS地址
+E、推送到远程库，需要先加入项目组
+git push 地址 分支
+F、拉取远程库 相当于fetch+merge
+git pull 地址 分支  【例子,弄好ssh后， git pull origin master 】
+G、解决冲突
+如果不是基于远程库最新版本修改，则本地修改后不能推送，必须先拉取
+拉取下来冲突，因为你已经改动，则按分支冲突解决即可
+14跨团队fork 和pull request
+先fork别人远程库，这个远程库就是你的了，git clone下来，改完，git push ，
+再pull request，等待审核
+别人审核，merge到他的远程库
+15、SSH免密登录
+先进入用户家目录: cd ~
+删除.shh目录: rm -rvf .ssh
+创建ssh目录(windows就这步,加引号，一路回车) ： ssh-keygen -t rsa -C "远程库账号邮箱"
+
+进入目录： cd .ssh/
+ll
+cat id_rsa.pub
+复制以上内容，放到github SSH and GPG keys
+后面git push时，创建别名，用SSH地址推送
+
+16
+解决输入 git config --list 退出的问题
+直接按 q
+

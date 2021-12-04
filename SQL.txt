@@ -1,0 +1,85 @@
+mysql -uroot -p密码
+exit；
+show databases；
+create 数据库；
+use 数据库；
+数据库基本单元:表,行是记录，列是字段
+show tables；
+
+语言分类
+查DQL   select
+操DML   Insert delete update
+定DDL   creat drop alter 改表的结构
+TCL        事务提交commit回滚rollback
+控制语言DCL   授权grant 撤权revoke
+
+导入表.sql文件
+source 路径；
+
+查
+select * from 表名；
+desc 表名；
+select version（）；
+select database（）；
+
+
+1、简单查询,SQL不区分大小写
+select 字段名 from 表名；
+select 字段1，字段2 from 表名；
+select * from 表名
+2、取别名
+select 字段1，字段2 as 字段3 from 表名；
+select 字段1，字段2 as ‘new name’ from 表名；
+3、在所有数据库中，字符串统一使用单引号
+4、字段可以使用字段表达式
+select name, salary * 12 as yearsal from emp
+
+5、条件查询 where
+语法格式：
+select
+    字段1，字段2，...
+from
+    表名
+where
+    条件；
+条件格式：
+！=
+<>
+>= and <=
+between ... and ...
+is null
+is not null
+in    相当多个or，后面跟具体值
+and  优先级高于or
+or  不确定优先级可加括号
+not 取非
+
+like 模糊查询   % 匹配任意多个字符  下划线匹配任意一个字符
+select name from emp where name like '%O%'
+斜杠\可以将以上字符转义为普通字符，即可匹配改字符
+
+6、排序 order by
+单个排序：
+select ename from emp order by salary desc;
+多个排序：
+select ename from emp order by salary asc, name asc;
+其中默认升序，asc升序，desc降序
+按第2列字段排序：
+select ename from emp order by 2
+
+第一步from第二步where第三步select第四步obder by
+
+7、数据处理函数/单行处理函数
+单行处理函数：一个输入对应一个输出
+多行处理函数：多个输入对应一个输出
+常用：lower   upper   substr(字段，起始1开始，终点) 
+length   trim   str_to_date 
+date_format    format 
+round   rand()   ifnull   contact
+用法：
+select lower(name) as ename from emp；
+select rand() as ename from emp； 生成随机数
+select ename, (sal + ifnull(comm, 0)) from emp
+
+
+
