@@ -17,7 +17,7 @@ cat id_rsa.pub
 复制以上内容，放到github SSH and GPG keys
 【windows】
 就这步,加引号，一路回车：  ssh-keygen -t rsa -C "远程库账号邮箱"
-复制id_rsa.pub内容，放到github SSH and GPG keys
+复制C盘用户目录下.ssh文件夹下id_rsa.pub内容，放到github SSH and GPG keys
 【后面git push时，创建别名，用SSH别名推送】
 4、取别名
 git remote -v

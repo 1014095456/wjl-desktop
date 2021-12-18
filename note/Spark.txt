@@ -71,3 +71,18 @@ fork分支join合并，实际过程不断fork/join
 DAG反向解析
 窄依赖，则不断添加，流水作业
 宽依赖，则划分阶段，不同阶段之间发生等待
+
+7、Spark部署方式  单机/集群
+集群部署模式：
+Standalone：    Spark自带资源调度，效率不高
+Mesos：           血缘关系，资源调度最高
+YARN：            业界最多
+概念：
+Spark和Hadoop并不对等，而是与hadoop中MapReaduce对等，
+Spark逐渐取代MapReaduce，Spark计算框架，Hadoop的HDFS和Hbase
+仍是不可取代的存储框架
+
+8、安装Spark
+首先，构建基础环境，开发在Linux基础之上，存储需要Hadoop，Java环境
+Spark版本与Java有对应要求，因为Spark底层编译成Java字节码执行
+Spark2.4.0  JAVA 8以上  Hadoop 2.7.1
