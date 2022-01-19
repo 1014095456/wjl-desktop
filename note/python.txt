@@ -2,12 +2,14 @@
 与队列绑定，注意边界
 
 python里队列实现
-from queue import Queue
-put()  get()实现入栈、出栈
+1、from queue import Queue
+put()  get()实现入、栈
+2.collections.deque()
+popleft()  append()
 
 采用list
-pop() 出栈  insert(0, val) 入栈
-append(val) 入栈  list[0] del list[0]出栈
+1、pop() 出栈  insert(0, val) 入栈
+2、append(val) 入栈  list[0] del list[0]出栈
 
 2、DFS   【儿子插队】
 与栈\递归绑定
