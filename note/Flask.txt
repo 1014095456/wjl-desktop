@@ -1,0 +1,11 @@
+1、redis是什么，和mysql区别
+2、蓝图blueprint
+3、可插拔视图view
+4、数据库orm :sqlalchemy、migrate
+5、单元测试unittest
+定义测试类，导入flask的app及测试客户端，模拟发送请求。
+7、session和Cookie
+8、表单、请求钩子、请求上下文、应用上下文、配置参数
+9、flask初始化对象
+10、路由、参数、
+11、wsgi+nginx
