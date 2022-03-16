@@ -1,0 +1,73 @@
+
+import threading
+import time
+
+from threading import Lock, RLock
+锁 Lock RLock
+先实例化
+获取acquire()，返回True or Flase
+释放release()
+通过with实现自动获取自动释放
+
+from concurrent.futures import ThreadPoolExecutor
+# 线程池,采用原因：启动一个新线程成本较高，而线程池创建一定空闲的线程
+# 任务结束不会消亡，自行分配任务，
+# 1、适用于大量生存期短暂的线程任务时2、并发线程时
+def fuc1(k):
+    n = 0
+    for i in range(k):
+        print(threading.current_thread().name, i)
+        n += i
+    return n
+
+
+# 案例1 创建线程池，submit提交，future返回task返回值，关闭线程池
+# pool = ThreadPoolExecutor(max_workers=2)
+# future1 = pool.submit(fuc1, 50)
+# future2 = pool.submit(fuc1, 100)
+# print(future1.done())
+# time.sleep(3)
+# print(future1.result())
+# pool.shutdown()
+
+# 案例2 采用map使用线程池,最终返回函数返回值。 以及with上下文管理
+# with ThreadPoolExecutor(max_workers=2) as pool:
+#     ans = pool.map(fuc1, (50, 100, 150))
+#     for i in ans:
+#         print(i)
+
+# 案例3 模拟量semaphore类
+# 是一个计数器，也采用acquire() +1, release() -1,为0时则需要等待,需要手动增加减少
+# 从而控制实际工作的线程数
+# sem = threading.Semaphore(3)
+# beg = time.perf_counter()
+# threads = []
+# for i in range(6):
+#     # args可变参数是元组，加逗号
+#     t = threading.Thread(target=fuc1, args=(5,))
+#     threads.append(t)
+#     t.start()
+# for t in threads:
+#     t.join()
+# end = time.perf_counter()
+# print('time use', end-beg)
+
+# 案例4 事件Event类 其他线程知道另一个线程的某种状态，才能进行下一步操作
+# 实例方法 is_set()是否发生  set()开始发生
+# clear()重置未发生  wait(timeout=None)线程阻塞等待发生，超时返回False
+beg = threading.Event()  # 考试开始事件
+def s(id):
+    print('{}等待考试'.format(id))
+    beg.wait()
+    print('{}开始考试'.format(id))
+def teacher():
+    print('老师说开始考试')
+    beg.set()
+for i in range(6):
+    threading.Thread(target=s, args=(i,)).start()
+time.sleep(3)
+threading.Thread(target=teacher).start()
+
+
+# 条件变量Condition
+
